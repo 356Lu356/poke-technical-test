@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import NavItem from "./NavItem";
 
@@ -27,28 +26,6 @@ function MobileNavigation({
           closeMobileMenu={closeMobileMenu}
           classNameLink="block"
         />
-        {/* {navItems.map((item) => {
-          const isActive =
-            isClient &&
-            (item.exact
-              ? pathname === item.href
-              : pathname.startsWith(item.href) && item.href !== "/");
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={closeMobileMenu}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-                isActive
-                  ? "bg-blue-100 text-blue-700"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {item.label}
-            </Link>
-          );
-        })} */}
       </div>
     </div>
   );

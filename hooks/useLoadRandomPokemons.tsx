@@ -21,7 +21,7 @@ function useLoadRandomPokemons() {
       const randomPokemon = await fetchMultiplePokemon(randomIds);
 
       const names = randomPokemon.map((pokemon) => pokemon.name);
-      console.log("Nombres de Pokémon:", names);
+
       const vowels = countVowels(names);
 
       setPokemon(randomPokemon);
