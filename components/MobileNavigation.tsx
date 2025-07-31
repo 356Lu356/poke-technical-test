@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import NavItem from "./NavItem";
 
 interface MobileMenuToggleProps {
   isMobileMenuOpen: boolean;
@@ -19,7 +20,14 @@ function MobileNavigation({
   return (
     <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
-        {navItems.map((item) => {
+        <NavItem
+          navItems={navItems}
+          isClient={isClient}
+          pathname={pathname}
+          closeMobileMenu={closeMobileMenu}
+          classNameLink="block"
+        />
+        {/* {navItems.map((item) => {
           const isActive =
             isClient &&
             (item.exact
@@ -40,7 +48,7 @@ function MobileNavigation({
               {item.label}
             </Link>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

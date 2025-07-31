@@ -17,7 +17,6 @@ export default function PokemonCard({
     pokemon.sprites.other["official-artwork"].front_default ||
     pokemon.sprites.front_default;
 
-  console.log("PokemonCard", imageUrl);
   return (
     <div className="pokemon-card">
       <div className="pokemon-card-content">
