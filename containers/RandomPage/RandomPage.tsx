@@ -15,7 +15,7 @@ function RandomPage() {
     useLoadRandomPokemons();
 
   const pokemonNames = useMemo(
-    () => pokemon.map((p) => p.name).join(", "),
+    () => pokemon.map((poke) => poke.name).join(", "),
     [pokemon]
   );
 

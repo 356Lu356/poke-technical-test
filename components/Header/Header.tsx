@@ -26,7 +26,6 @@ export default function Header() {
 
   const navItems = [
     { href: "/", label: "Pokémon 1-9", exact: true },
-    { href: "/pokemon", label: "Detalles", exact: false },
     { href: "/random", label: "Aleatorios", exact: true },
   ];
 
