@@ -5,13 +5,11 @@ import type { Pokemon } from "@/types/pokemon";
 interface PokemonCardProps {
   pokemon: Pokemon;
   showIndex?: boolean;
-  showDetailsButton?: boolean;
 }
 
 export default function PokemonCard({
   pokemon,
   showIndex = false,
-  showDetailsButton = true,
 }: PokemonCardProps) {
   const imageUrl =
     pokemon.sprites.other["official-artwork"].front_default ||
@@ -34,11 +32,10 @@ export default function PokemonCard({
           priority
         />
         <h3 className="pokemon-name">{pokemon.name}</h3>
-        {showDetailsButton && (
-          <Link href={`/pokemon/${pokemon.id}`}>
-            <button className="details-button">Ver detalles</button>
-          </Link>
-        )}
+
+        <Link href={`/pokemon/${pokemon.id}`}>
+          <button className="details-button">Ver detalles</button>
+        </Link>
       </div>
     </div>
   );
