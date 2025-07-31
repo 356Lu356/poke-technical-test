@@ -1,5 +1,4 @@
 import { Pokemon } from "@/types/pokemon";
-import React from "react";
 
 interface BadgeTypesProps {
   pokemon: Pokemon;
