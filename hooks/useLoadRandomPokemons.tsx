@@ -4,13 +4,14 @@ import {
 } from "@/lib/pokemonApi";
 import { countVowels } from "@/lib/vowelCounter";
 import { Pokemon } from "@/types/pokemon";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 function useLoadRandomPokemons() {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-  const [vowelCount, setVowelCount] = useState<Record<string, number>>({});
+  const isInitialLoad = useRef(true);
   const [loading, setLoading] = useState(true);
+  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [vowelCount, setVowelCount] = useState<Record<string, number>>({});
 
   const loadRandomPokemon = useCallback(async () => {
     try {
@@ -35,8 +36,11 @@ function useLoadRandomPokemons() {
   }, []);
 
   useEffect(() => {
-    loadRandomPokemon();
-  }, [loadRandomPokemon]);
+    if (isInitialLoad.current) {
+      isInitialLoad.current = false;
+      loadRandomPokemon();
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     pokemon,
