@@ -428,6 +428,5 @@ npm install --save-dev @testing-library/react @testing-library/jest-dom jest
 ---
 
 <div align="center">
-  <p><strong>Desarrollado con ❤️ para Metlabs</strong></p>
   <p><em>Prueba Técnica Frontend - Pokémon App</em></p>
 </div>
