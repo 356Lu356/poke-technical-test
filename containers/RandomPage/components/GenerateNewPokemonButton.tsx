@@ -1,8 +1,10 @@
-import useLoadRandomPokemons from "@/hooks/useLoadRandomPokemons";
-import React from "react";
+interface GenerateNewPokemonButtonProps {
+  loadRandomPokemon: () => void;
+}
 
-function GenerateNewPokemonButton() {
-  const { loadRandomPokemon } = useLoadRandomPokemons();
+function GenerateNewPokemonButton({
+  loadRandomPokemon,
+}: GenerateNewPokemonButtonProps) {
   return (
     <button
       onClick={loadRandomPokemon}

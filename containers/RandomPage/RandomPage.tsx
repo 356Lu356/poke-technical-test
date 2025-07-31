@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 
 import LoadingSpinner from "@/components/LoadingSpinner";
 import PokemonList from "@/components/PokemonList";
@@ -11,11 +11,18 @@ import useLoadRandomPokemons from "@/hooks/useLoadRandomPokemons";
 import GenerateNewPokemonButton from "./components/GenerateNewPokemonButton";
 
 function RandomPage() {
-  const { pokemon, error, loadRandomPokemon } = useLoadRandomPokemons();
+  const { pokemon, error, vowelCount, loadRandomPokemon } =
+    useLoadRandomPokemons();
+
+  const pokemonNames = useMemo(
+    () => pokemon.map((p) => p.name).join(", "),
+    [pokemon]
+  );
 
   if (error) {
     return <TryAgain error={error} loadRandomPokemon={loadRandomPokemon} />;
   }
+
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <div className="container mx-auto px-4 py-8">
@@ -24,7 +31,7 @@ function RandomPage() {
             Pokémon Aleatorios
           </h1>
           <p className="text-gray-600 text-lg mb-6">5 Pokémon aleatorios</p>
-          <GenerateNewPokemonButton />
+          <GenerateNewPokemonButton loadRandomPokemon={loadRandomPokemon} />
         </div>
 
         <div className="mb-12">
@@ -32,16 +39,14 @@ function RandomPage() {
         </div>
 
         <div className="max-w-md mx-auto">
-          <VowelCountTable />
+          <VowelCountTable vowelCount={vowelCount} />
         </div>
 
         <div className="mt-8 text-center">
           <h3 className="text-lg font-semibold text-gray-700 mb-2">
             Nombres analizados:
           </h3>
-          <p className="text-gray-600">
-            {pokemon.map((p) => p.name).join(", ")}
-          </p>
+          <p className="text-gray-600">{pokemonNames}</p>
         </div>
       </div>
     </Suspense>

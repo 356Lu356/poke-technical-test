@@ -1,8 +1,8 @@
-"use client";
-import useLoadRandomPokemons from "@/hooks/useLoadRandomPokemons";
+interface VowelCountTableProps {
+  vowelCount: Record<string, number>;
+}
 
-export default function VowelCountTable() {
-  const { vowelCount } = useLoadRandomPokemons();
+export default function VowelCountTable({ vowelCount }: VowelCountTableProps) {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">

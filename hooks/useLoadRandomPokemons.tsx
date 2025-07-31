@@ -4,7 +4,7 @@ import {
 } from "@/lib/pokemonApi";
 import { countVowels } from "@/lib/vowelCounter";
 import { Pokemon } from "@/types/pokemon";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function useLoadRandomPokemons() {
   const [pokemon, setPokemon] = useState<Pokemon[]>([]);
@@ -12,7 +12,7 @@ function useLoadRandomPokemons() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadRandomPokemon = async () => {
+  const loadRandomPokemon = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -20,7 +20,8 @@ function useLoadRandomPokemons() {
       const randomIds = generateRandomConsecutiveIds();
       const randomPokemon = await fetchMultiplePokemon(randomIds);
 
-      const names = randomPokemon.map((p) => p.name);
+      const names = randomPokemon.map((pokemon) => pokemon.name);
+      console.log("Nombres de Pokémon:", names);
       const vowels = countVowels(names);
 
       setPokemon(randomPokemon);
@@ -31,11 +32,11 @@ function useLoadRandomPokemons() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadRandomPokemon();
-  }, []);
+  }, [loadRandomPokemon]);
 
   return {
     pokemon,
