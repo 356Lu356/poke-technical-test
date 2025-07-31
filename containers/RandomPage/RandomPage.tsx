@@ -2,13 +2,13 @@
 
 import { Suspense, useMemo } from "react";
 
-import LoadingSpinner from "@/components/LoadingSpinner";
-import PokemonList from "@/components/PokemonList";
-import VowelCountTable from "@/containers/RandomPage/components/VowelCountTable";
 import TryAgain from "./components/TryAgain";
+import PokemonList from "@/components/PokemonList";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import GenerateNewPokemonButton from "./components/GenerateNewPokemonButton";
+import VowelCountTable from "@/containers/RandomPage/components/VowelCountTable";
 
 import useLoadRandomPokemons from "@/hooks/useLoadRandomPokemons";
-import GenerateNewPokemonButton from "./components/GenerateNewPokemonButton";
 
 function RandomPage() {
   const { pokemon, error, vowelCount, loadRandomPokemon } =
@@ -23,6 +23,7 @@ function RandomPage() {
     return <TryAgain error={error} loadRandomPokemon={loadRandomPokemon} />;
   }
 
+  console.log("RandomPage render - Pokemon count:", pokemon.length);
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <div className="container mx-auto px-4 py-8">
